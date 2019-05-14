@@ -5,7 +5,10 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Sections from './components/Sections/Sections';
 import Header from './containers/Header/Header';
+import Footer from './components/Footer/Footer';
 import Spinner from './components/UI/Spinner/Spinner';
+import { FaAngleDoubleDown } from 'react-icons/fa';
+
 class App extends Component {
   state = {
     news: [],
@@ -24,9 +27,15 @@ class App extends Component {
   toggleSectionClick = (s) => {
     alert(s);
   }
+
+  arrowDownHandler = () => {
+
+  }
+
+  // componentDidMount()
   componentDidMount() {
     this.setState({ spinner: true });
-    axios.get(`https://newsapi.org/v2/top-headlines?country=us&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
+    axios.get(`https://newsapi.org/v2/top-headlines?country=gb&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
       .then((res) => {
         let news = res.data.articles.map((x) => {
           return { ...x, index: Math.random(), open: false }
@@ -66,9 +75,14 @@ class App extends Component {
             <Spinner show={this.state.spinner} />
             <h4>Headlines</h4>
             {newsCards}
+            <div className={classes.Arrow} onClick={this.arrowDownHandler}>
+              <FaAngleDoubleDown size={27} />
+            </div>
           </div>
 
         </div>
+
+        <Footer />
 
       </div>
     );

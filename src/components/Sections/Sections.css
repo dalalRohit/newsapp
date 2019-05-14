@@ -5,3 +5,10 @@
     box-sizing: border-box;
     padding: 8px;
 }
+
+@media(max-width:699px)
+{
+    .Sections{
+        display: none;
+    }
+}
