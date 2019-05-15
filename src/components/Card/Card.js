@@ -2,6 +2,7 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Moment from 'react-moment';
 import 'moment-timezone';
+import { MdArchive, MdShare } from 'react-icons/md';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
 import classes from './Card.css';
 
@@ -10,7 +11,13 @@ const card = (props) => {
     return (
         <div className={classes.Card}>
             <div className={classes.Image}>
+                <div className={classes.Archive}>
+                    <MdArchive size={30} />
+                </div>
                 <img src={props.imgUrl} alt={props.author} title={props.author} />
+                <div className={classes.Share}>
+                    <MdShare size={30} />
+                </div>
             </div>
 
             <div className={classes.Link}>

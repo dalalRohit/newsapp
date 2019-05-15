@@ -5,6 +5,18 @@
     box-sizing: border-box;
     padding: 8px;
 }
+.Change{
+    border-top: 1px solid #eee;
+    widows: 100%;
+    max-width: 100%;
+    padding: 10px;
+}
+.Custom{
+       border-bottom: 1px solid #eee;
+    widows: 100%;
+    max-width: 100%;
+    padding: 10px;
+}
 
 @media(max-width:699px)
 {

@@ -6,60 +6,6 @@
   max-width: 100%;
   font-family: 'Montserrat', sans-serif;
   /* border: 2px dodgerblue solid; */
-  background-color: #303030;
-  color: white;
-}
 
-.News{
-  width: 100%;
-  max-width: 100%;;
-  padding: 10px;
-  max-width: 100%;
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-around;
-}
-.Categories{
-  width: 20%;
-  max-width: 100%;
-
-}
-.MainNews{
-  width: 90%;
-  box-sizing: border-box;
-  margin: 0 0 10px 10%;
-  /* border: 1px solid #eee;; */
-  box-sizing: border-box;
-  padding: 10px;
-}
-
-.Arrow{
-  cursor: pointer;
-  /* border: 1px solid white; */
-  padding:10px;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: fixed;
-  right: 15px;
-  top: 600px;
-
-}
-
-@media(max-width:699px)
-{
-  .Categories{
-    display: none;
-  }
-  .MainNews{
-    width: 100%;
-    margin: 0 auto;
-  }
-  .Arrow{
-    top: 700px;
-  }
 }
 
