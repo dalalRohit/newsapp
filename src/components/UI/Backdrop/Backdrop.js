@@ -1,8 +1,10 @@
 import React from 'react'
 import classes from './Backdrop.css';
-export default function Backdrop() {
+export default function Backdrop(props) {
     return (
-        <div className={classes.Backrop}>
+        <div onClick={props.click}
+            style={{ display: props.show ? 'block' : 'none' }}
+            className={classes.Backdrop}>
             Backdrop
         </div>
     )

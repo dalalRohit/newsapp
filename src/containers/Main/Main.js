@@ -7,8 +7,10 @@ import Card from './../../components/Card/Card';
 import { FaAngleDoubleDown } from 'react-icons/fa';
 class Main extends Component {
     state = {
+        country: 'in',
         news: [],
-        spinner: false
+        spinner: false,
+        section: 'Headlines'
     }
     toggleDesc = (x) => {
         let oldNews = this.state.news;
@@ -20,7 +22,13 @@ class Main extends Component {
     }
 
     toggleSectionClick = (s) => {
-        alert(s);
+        let section = s;
+        this.setState({ section: s });
+        axios.get(`https://newsapi.org/v2/top-headlines?country=${this.state.country}&category=${section.toLowerCase()}&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
+            .then((res) => {
+                console.log(res.data);
+                this.setState({ news: res.data.articles })
+            })
     }
 
     arrowDownHandler = () => {
@@ -30,7 +38,7 @@ class Main extends Component {
     // componentDidMount()
     componentDidMount() {
         this.setState({ spinner: true });
-        axios.get(`https://newsapi.org/v2/top-headlines?country=in&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
+        axios.get(`https://newsapi.org/v2/top-headlines?country=${this.state.country}&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
             .then((res) => {
                 let news = res.data.articles.map((x) => {
                     return { ...x, index: Math.random(), open: false }
@@ -64,7 +72,9 @@ class Main extends Component {
 
                 <div className={classes.MainNews}>
                     <Spinner show={this.state.spinner} />
-                    <h4>Headlines</h4>
+
+                    <h4>{this.state.section}</h4>
+
                     {newsCards}
                     <div className={classes.Arrow} onClick={this.arrowDownHandler}>
                         <FaAngleDoubleDown size={27} />

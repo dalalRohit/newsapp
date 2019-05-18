@@ -3,8 +3,10 @@
     height: 50px;
     max-width: 100%;
     /* border: 1px solid  #eff4ff; */
+    background-color: #303030;
+    color: wheat;
     padding: 8px;
-    margin: 0px 0 10px 0;
+    border-bottom: 1px solid #eee;
     display: flex;
 
 }

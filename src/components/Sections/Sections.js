@@ -2,12 +2,13 @@ import React from 'react';
 import classes from './Sections.css';
 import Section from './Section/Section';
 const sections = (props) => {
-    let sections = ['World', 'Local', 'Business', 'Technology', 'Entertainment', 'Sports', 'Science', 'Health']
+    let sections = ['Headlines', 'World', 'Local', 'Business', 'Technology', 'Entertainment', 'Sports', 'Science', 'Health']
     let list = sections.map((section) => {
         return <Section
             key={Math.random()}
             name={section}
-            click={() => props.click(section)} />
+            click={() => props.click(section)}
+        />
     })
     return (
         <div className={classes.Sections}>
