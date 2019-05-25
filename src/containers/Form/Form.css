@@ -1,0 +1,23 @@
+.Form{
+    width: 100%;
+}
+.Button{
+    width: 30%;
+}
+.Switch{
+    margin: 10px 20% 0 20%;
+    width: 60%;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+
+}
+@media(max-width:699px)
+{
+    .Form{
+        width: 100%;
+        max-width: 100%;
+    }
+
+}

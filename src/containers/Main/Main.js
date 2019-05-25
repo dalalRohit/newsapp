@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import classes from './Main.css';
-import axios from 'axios';
+import axios from './../../axios-news';
 import Sections from './../../components/Sections/Sections';
 import Spinner from './../../components/UI/Spinner/Spinner';
 import Card from './../../components/Card/Card';
@@ -21,13 +21,15 @@ class Main extends Component {
         this.setState({ news: oldNews });
     }
 
-    toggleSectionClick = (s) => {
-        let section = s;
-        this.setState({ section: s });
-        axios.get(`https://newsapi.org/v2/top-headlines?country=${this.state.country}&category=${section.toLowerCase()}&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
+    toggleSectionClick = (section) => {
+        this.setState({ spinner: true, section })
+        axios.get(`?country=${this.state.country}&category=${section.toLowerCase()}&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
             .then((res) => {
-                console.log(res.data);
-                this.setState({ news: res.data.articles })
+                let news = res.data.articles.map((x) => {
+                    return { ...x, index: Math.random(), open: false }
+                })
+                console.log(news);
+                this.setState({ news, spinner: false });
             })
     }
 
@@ -38,13 +40,12 @@ class Main extends Component {
     // componentDidMount()
     componentDidMount() {
         this.setState({ spinner: true });
-        axios.get(`https://newsapi.org/v2/top-headlines?country=${this.state.country}&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
+        axios.get(`?country=${this.state.country}&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
             .then((res) => {
                 let news = res.data.articles.map((x) => {
                     return { ...x, index: Math.random(), open: false }
                 })
-                this.setState({ news });
-                this.setState({ spinner: false })
+                this.setState({ news, spinner: false });
                 console.log(res.data.articles);
             })
     }
@@ -63,6 +64,9 @@ class Main extends Component {
                 click={() => this.toggleDesc(x.index)}
                 show={x.open} />
         })
+        if (this.state.spinner) {
+            newsCards = <Spinner />;
+        }
         return (
             <div className={classes.News}>
 
@@ -76,6 +80,7 @@ class Main extends Component {
                     <h4>{this.state.section}</h4>
 
                     {newsCards}
+
                     <div className={classes.Arrow} onClick={this.arrowDownHandler}>
                         <FaAngleDoubleDown size={27} />
                     </div>

@@ -17,7 +17,8 @@ function Sidenav(props) {
                 style={{ display: props.show ? 'block' : 'none' }}>
 
                 <h3>NewsApp</h3>
-                <Sections click={props.clicked} />
+
+                <Sections click={props.sectionClick} />
 
             </div>
         </Auxi>

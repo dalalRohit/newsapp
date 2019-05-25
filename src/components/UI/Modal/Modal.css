@@ -1,7 +1,7 @@
 .Modal{
     position: fixed;
     z-index: 500;
-    background-color: gray;
+    background-color: #eee;
     width: 70%;
     border: 1px solid #ccc;
     box-shadow: 1px 1px 1px black;
@@ -10,4 +10,20 @@
     top: 30%;
     box-sizing: border-box;
     transition: all 0.3s ease-out;
+    z-index: 10000;
+}
+
+.Close{
+cursor: pointer;
+width: 10%;
+margin: 0 0 0 90%;
+}
+
+@media(max-width:699px)
+{
+    .Modal{
+        width: 90%;
+        left: 5%;
+        top: 30%;
+    }
 }
