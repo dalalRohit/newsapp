@@ -7,7 +7,6 @@
     left: 0;
     z-index: 1000;
     background-color: #eee;
-    display: none;
     transition: transform 0.3s ease-out;
 }
 

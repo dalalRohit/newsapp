@@ -6,29 +6,7 @@ import { Button } from '@material-ui/core';
 
 class Form extends Component {
     state = {
-        form: 'login',
-        formData: {
-            login: {
-                email: {
-                    value: '',
-                    error: false,
-                    validation: {
-                        required: true
-                    }
-                },
-                password: {
-                    value: '',
-                    error: false,
-                    validation: {
-                        required: true
-                    }
-                }
-
-            },
-            signup: {
-
-            }
-        }
+        form: 'login'
     }
     switchForm = (name) => {
         this.setState({ form: name })

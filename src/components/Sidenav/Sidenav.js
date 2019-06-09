@@ -14,11 +14,11 @@ function Sidenav(props) {
             <Backdrop show={props.show} click={props.backdropClick} />
             <div
                 className={attachedClasses.join(' ')}
-                style={{ display: props.show ? 'block' : 'none' }}>
+            >
 
                 <h3>NewsApp</h3>
 
-                <Sections click={props.sectionClick} />
+                <Sections />
 
             </div>
         </Auxi>

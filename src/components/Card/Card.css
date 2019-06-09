@@ -16,7 +16,6 @@
     justify-content: center;
     align-items: center;
     box-sizing: border-box;
-    /* border: 1px solid white; */
 }
 
 img:hover{
@@ -39,6 +38,8 @@ a:hover{
     /* text-align: right; */
     display: flex;
     flex-flow: row;
+    padding: 8px;
+    box-sizing: border-box;
     justify-content: space-between;
     /* align-items: center; */
     font-size: 0.8rem;

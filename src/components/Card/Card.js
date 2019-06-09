@@ -1,6 +1,5 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Moment from 'react-moment';
 import 'moment-timezone';
 import { MdArchive, MdShare } from 'react-icons/md';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
@@ -11,16 +10,10 @@ const card = (props) => {
     let arrowToShow = props.show ? <FaAngleUp size={30} /> : <FaAngleDown size={30} />
     return (
         <div className={classes.Card}>
+            <i>{props.source}</i>
+
             <div className={classes.Image}>
-                <div className={classes.Archive}>
-                    <MdArchive size={30} />
-                </div>
-
-                <img className="img-fluid" src={props.imgUrl} alt={props.author} title={props.author} />
-
-                <div className={classes.Share}>
-                    <MdShare size={30} />
-                </div>
+                <img src={props.imgUrl} alt={props.author} title={props.author} />
             </div>
 
             <div className={classes.Link}>
@@ -28,11 +21,14 @@ const card = (props) => {
             </div>
 
             <div className={classes.Extra}>
-                <p>{props.source}</p>
-
-
+                <div className={classes.Archive} onClick={props.archive}>
+                    <MdArchive size={30} />
+                </div>
                 <div className={classes.Icon} onClick={props.click} >
                     {arrowToShow}
+                </div>
+                <div className={classes.Share} onClick={props.share}>
+                    <MdShare size={30} />
                 </div>
             </div>
 

@@ -4,13 +4,17 @@ import axios from './../../axios-news';
 import Sections from './../../components/Sections/Sections';
 import Spinner from './../../components/UI/Spinner/Spinner';
 import Card from './../../components/Card/Card';
+import Modal from './../../components/UI/Modal/Modal';
 import { FaAngleDoubleDown } from 'react-icons/fa';
+import Auxi from './../../hoc/Auxi/Auxi';
 class Main extends Component {
     state = {
         country: 'in',
         news: [],
         spinner: false,
-        section: 'Headlines'
+        section: 'Headlines',
+        error: '',
+        modal: false
     }
     toggleDesc = (x) => {
         let oldNews = this.state.news;
@@ -20,6 +24,9 @@ class Main extends Component {
         toOpen['open'] = !toOpen['open'];
         this.setState({ news: oldNews });
     }
+    toggleModal = () => {
+        this.setState({ modal: false })
+    }
 
     toggleSectionClick = (section) => {
         this.setState({ spinner: true, section })
@@ -28,14 +35,19 @@ class Main extends Component {
                 let news = res.data.articles.map((x) => {
                     return { ...x, index: Math.random(), open: false }
                 })
-                console.log(news);
+                // console.log(news);
                 this.setState({ news, spinner: false });
+            })
+            .catch((err) => {
+                console.log(err);
+                this.setState({ error: err, modal: true, spinner: false });
             })
     }
 
     arrowDownHandler = () => {
 
     }
+
 
     // componentDidMount()
     componentDidMount() {
@@ -48,6 +60,16 @@ class Main extends Component {
                 this.setState({ news, spinner: false });
                 console.log(res.data.articles);
             })
+            .catch((err) => {
+                console.log(err);
+                this.setState({ error: err, modal: true, spinner: false });
+            })
+    }
+    handleArchive = () => {
+        alert('Archiving');
+    }
+    handleShare = () => {
+        alert('Sharing')
     }
     render() {
         let news = [...this.state.news];
@@ -62,31 +84,34 @@ class Main extends Component {
                 source={x.source.name}
                 content={x.description}
                 click={() => this.toggleDesc(x.index)}
+                archive={this.handleArchive}
+                share={this.handleShare}
                 show={x.open} />
         })
         if (this.state.spinner) {
             newsCards = <Spinner />;
         }
+
         return (
-            <div className={classes.News}>
+            <Auxi>
+                {/* show network error if no connection */}
+                {
+                    this.state.modal ? <Modal click={this.toggleModal}>{this.state.error.message}</Modal> : null
+                }
 
-                <div className={classes.Categories} >
-                    <Sections click={this.toggleSectionClick} />
-                </div>
+                <div className={classes.News}>
 
-                <div className={classes.MainNews}>
-                    <Spinner show={this.state.spinner} />
-
-                    <h4>{this.state.section}</h4>
-
-                    {newsCards}
-
-                    <div className={classes.Arrow} onClick={this.arrowDownHandler}>
-                        <FaAngleDoubleDown size={27} />
+                    <div className={classes.Categories} >
+                        <Sections click={this.toggleSectionClick} />
                     </div>
-                </div>
+                    <div className={classes.MainNews}>
+                        <Spinner show={this.state.spinner} />
+                        <h4>{this.state.section}</h4>
+                        {this.state.error ? <h1>Network Error</h1> : newsCards}
+                    </div>
 
-            </div>
+                </div>
+            </Auxi>
         )
     }
 }
