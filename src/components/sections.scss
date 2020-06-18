@@ -24,3 +24,17 @@
         display: none;
     } */
 }
+
+
+.Section{
+    /* border: 1px solid #eee; */
+    padding: 8px;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 100%;
+    cursor: pointer;
+}
+.Section:hover{
+    background-color: #F5F5F5;
+    color: #303030;
+}

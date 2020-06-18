@@ -1,24 +1,28 @@
 import React from 'react';
-import classes from './Sections.css';
-import Section from './Section/Section';
+// import './sections.scss';
+
+
+
 const sections = (props) => {
+
     let sections = ['General', 'Business', 'Technology', 'Entertainment', 'Sports', 'Science', 'Health']
+    
     let list = sections.map((section) => {
-        return <Section
+        return <p
             key={Math.random()}
-            name={section}
-            click={() => props.click(section)}
-        />
+            click={props.click}
+    > {section} </p>
     })
+
     return (
-        <div className={classes.Sections}>
-            <div className={classes.Custom}>
+        <div className="Sections">
+            <div className="Custom">
                 USER RELATED
             </div>
 
             {list}
 
-            <div className={classes.Change}>
+            <div className="Change">
                 CHANGE COUNTRY
             </div>
         </div>

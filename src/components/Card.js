@@ -1,39 +1,38 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'moment-timezone';
 import { MdArchive, MdShare } from 'react-icons/md';
 import { FaAngleDown, FaAngleUp } from 'react-icons/fa'
-import classes from './Card.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+// import './card.scss';
 
 const card = (props) => {
     let arrowToShow = props.show ? <FaAngleUp size={30} /> : <FaAngleDown size={30} />
     return (
-        <div className={classes.Card}>
+        <div className="Card">
             <i>{props.source}</i>
 
-            <div className={classes.Image}>
-                <img src={props.imgUrl} alt={props.author} title={props.author} />
+            <div className="Image">
+                <a href={props.link} rel="noopener noreferrer" target="_blank">
+                    <img src={props.imgUrl} alt={props.author} title={props.author} />
+                </a>
             </div>
 
-            <div className={classes.Link}>
-                <a href={props.link} target="_blank">{props.author}</a>
+            <div className="Link">
+                <a href={props.link} rel="noopener noreferrer" target="_blank">{props.author}</a>
             </div>
 
-            <div className={classes.Extra}>
-                <div className={classes.Archive} onClick={props.archive}>
+            <div className="Extra">
+                <div className="Archive" onClick={props.archive}>
                     <MdArchive size={30} />
                 </div>
-                <div className={classes.Icon} onClick={props.click} >
+                <div className="Icon" onClick={props.click} >
                     {arrowToShow}
                 </div>
-                <div className={classes.Share} onClick={props.share}>
+                <div className="Share" onClick={props.share}>
                     <MdShare size={30} />
                 </div>
             </div>
 
             <article
-                className={classes.Article}
+                className="Article"
                 style={{ display: props.show ? 'block' : 'none' }} >
 
                 {props.content}

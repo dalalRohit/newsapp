@@ -1,9 +1,9 @@
 import React from 'react';
-import classes from './Spinner.css';
+import  './spinner.scss';
 
 const spinner = (props) => {
     return (
-        <div className={classes.loader}
+        <div className="loader"
             style={{ display: props.show ? 'block' : 'none' }}>
             Loading...
         </div>

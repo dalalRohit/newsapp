@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
-import classes from './Main.css';
-import axios from './../../axios-news';
-import Sections from './../../components/Sections/Sections';
-import Spinner from './../../components/UI/Spinner/Spinner';
-import Card from './../../components/Card/Card';
-import Modal from './../../components/UI/Modal/Modal';
-import { FaAngleDoubleDown } from 'react-icons/fa';
-import Auxi from './../../hoc/Auxi/Auxi';
+// import './main.scss';
+import axios from './../axios-news';
+import Sections from './../components/Sections';
+import Spinner from './../components/UI/Spinner';
+import Card from './../components/Card';
+import Modal from './../components/UI/Modal';
+
 class Main extends Component {
     state = {
         country: 'in',
@@ -30,7 +29,7 @@ class Main extends Component {
 
     toggleSectionClick = (section) => {
         this.setState({ spinner: true, section })
-        axios.get(`?country=${this.state.country}&category=${section.toLowerCase()}&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
+        axios.get(`?country=${this.state.country}&category=${section}&apiKey=${process.env.API_KEY}`)
             .then((res) => {
                 let news = res.data.articles.map((x) => {
                     return { ...x, index: Math.random(), open: false }
@@ -49,7 +48,6 @@ class Main extends Component {
     }
 
 
-    // componentDidMount()
     componentDidMount() {
         this.setState({ spinner: true });
         axios.get(`?country=${this.state.country}&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
@@ -58,7 +56,7 @@ class Main extends Component {
                     return { ...x, index: Math.random(), open: false }
                 })
                 this.setState({ news, spinner: false });
-                console.log(res.data.articles);
+                // console.log(res.data.articles);
             })
             .catch((err) => {
                 console.log(err);
@@ -93,25 +91,26 @@ class Main extends Component {
         }
 
         return (
-            <Auxi>
+            <>
                 {/* show network error if no connection */}
                 {
                     this.state.modal ? <Modal click={this.toggleModal}>{this.state.error.message}</Modal> : null
                 }
 
-                <div className={classes.News}>
+                <div className="News">
 
-                    <div className={classes.Categories} >
+                    <div className="Categories" >
                         <Sections click={this.toggleSectionClick} />
                     </div>
-                    <div className={classes.MainNews}>
+
+                    <div className="MainNews">
                         <Spinner show={this.state.spinner} />
                         <h4>{this.state.section}</h4>
                         {this.state.error ? <h1>Network Error</h1> : newsCards}
                     </div>
 
                 </div>
-            </Auxi>
+            </>
         )
     }
 }

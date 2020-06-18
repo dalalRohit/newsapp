@@ -1,20 +1,20 @@
 import React, { Component } from 'react';
-import classes from './App.css';
-import Layout from './containers/Layout/Layout';
-import Main from './containers/Main/Main';
+import './global.scss';
+
+import Header from './containers/Header';
+
+import Main from './containers/Main';
 
 class App extends Component {
 
   render() {
     return (
-      <div className={classes.App}>
-        <Layout>
+      <div className="App">
+          <Header />
           <Main />
-        </Layout>
       </div>
     );
   }
 }
-// <Layout> <Main /> </Layout>
 
 export default App;
