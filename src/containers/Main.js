@@ -5,6 +5,7 @@ import Sections from './../components/Sections';
 import Spinner from './../components/UI/Spinner';
 import Card from './../components/Card';
 import Modal from './../components/UI/Modal';
+require('dotenv').config();
 
 class Main extends Component {
     state = {
@@ -29,7 +30,7 @@ class Main extends Component {
 
     toggleSectionClick = (section) => {
         this.setState({ spinner: true, section })
-        axios.get(`?country=${this.state.country}&category=${section}&apiKey=${process.env.API_KEY}`)
+        axios.get(`?country=${this.state.country}&category=${section}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then((res) => {
                 let news = res.data.articles.map((x) => {
                     return { ...x, index: Math.random(), open: false }
@@ -50,7 +51,7 @@ class Main extends Component {
 
     componentDidMount() {
         this.setState({ spinner: true });
-        axios.get(`?country=${this.state.country}&apiKey=d6ecda84e1f44bb48c493585c4c88a51`)
+        axios.get(`?country=${this.state.country}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then((res) => {
                 let news = res.data.articles.map((x) => {
                     return { ...x, index: Math.random(), open: false }
